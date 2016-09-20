@@ -1,0 +1,9 @@
+AllCops:
+  Include:
+    - gnresolver_client.gemspec
+Metrics/ModuleLength:
+  Max: 1000
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Style/DotPosition:
+  EnforcedStyle: trailing

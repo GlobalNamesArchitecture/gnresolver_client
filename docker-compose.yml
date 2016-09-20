@@ -1,0 +1,20 @@
+version: '2'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    depends_on:
+      - gnresolver
+  gnresolver:
+    image: gnames/gnresolver
+    depends_on:
+      - pg
+  pg:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+    external: false
