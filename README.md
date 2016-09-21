@@ -18,11 +18,13 @@ gem "gnresolver_client"
 
 And then execute:
 
-    \$ bundle
+```{.bash}
+bundle
+```
 
 Or install it yourself as:
 
-    \$ gem install gnresolver_client
+    gem install gnresolver_client
 
 ## Usage
 
