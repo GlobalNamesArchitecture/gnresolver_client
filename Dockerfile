@@ -24,7 +24,6 @@ RUN gem install bundler && mkdir /app && mkdir /var/run/sshd
 WORKDIR /app
 
 COPY Gemfile /app
-COPY Gemfile.lock /app
 # RUN bundle
 #
 COPY . /app

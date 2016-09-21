@@ -7,14 +7,17 @@ services:
     depends_on:
       - gnresolver
   gnresolver:
-    image: gnames/gnresolver
+    image: gnames/gnresolver-dev
+    ports:
+      - "0.0.0.0:9001:9001"
+    environment:
+      RACK_ENV: development
+      DB_HOST: pg
+      DB_DATABASE: development
+      DB_USER: postgres
+      DB_USER_PASS: ""
+    command: bin/docker-startup.sh
     depends_on:
       - pg
   pg:
-    image: postgres
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:
-    external: false
+    image: postgres:9.6
