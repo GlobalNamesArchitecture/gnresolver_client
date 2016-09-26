@@ -1,0 +1,14 @@
+machine:
+  timezone: UTC
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - sudo pip install docker-compose
+
+test:
+  pre:
+    - docker-compose up -d
+  override:
+    - docker-compose run app rake
