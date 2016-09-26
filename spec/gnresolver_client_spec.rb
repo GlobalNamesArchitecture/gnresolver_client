@@ -1,7 +1,11 @@
-require 'spec_helper'
-
 describe GnresolverClient do
-  it 'has a version number' do
-    expect(GnresolverClient::VERSION).not_to match("\d+\.\d+\.\d+")
+  describe ".version" do
+    it "has a version number as a constant" do
+      expect(subject::VERSION).to match(/\d+\.\d+\.\d+/)
+    end
+
+    it "exposees version as a method" do
+      expect(subject.version).to eq subject::VERSION
+    end
   end
 end

@@ -1,5 +1,5 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "gnresolver_client/version"
 
@@ -9,12 +9,12 @@ Gem::Specification.new do |s|
   s.authors       = ["Dmitry Mozzherin"]
   s.email         = ["dmozzherin@gmail.com"]
 
-  s.summary       = %q{A client for gnresolver API}
+  s.summary       = "A client for gnresolver API"
   s.homepage      = "https://github.com/dimus/gnparser_client"
   s.license       = "MIT"
 
   s.files         = `git ls-files -z`.split("\x0").
-                       reject { |f| f.match(%r{^(test|spec|features)/}) }
+                    reject { |f| f.match(%r{^(test|spec|features)/}) }
   s.bindir        = "exe"
   s.executables   = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
   s.require_paths = ["lib"]
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", "~> 3.0"
   s.add_development_dependency "rubocop", "~> 0"
   s.add_development_dependency "byebug", "~> 9.0"
+  s.add_development_dependency "coveralls", "~> 0.8"
 
   s.add_dependency "rest-client", "~> 2.0"
 

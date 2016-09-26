@@ -2,6 +2,8 @@ version: '2'
 services:
   app:
     build: .
+    environment:
+      GNR_URL: "http://gnresolver:9001/api/"
     volumes:
       - .:/app
     depends_on:

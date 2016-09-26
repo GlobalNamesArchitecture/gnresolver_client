@@ -1,2 +1,6 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'gnresolver_client'
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+require "coveralls"
+Coveralls.wear!
+
+require "support/helpers"
+require "gnresolver_client"
