@@ -1,4 +1,6 @@
 machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
   timezone: UTC
   services:
     - docker
@@ -11,4 +13,4 @@ test:
   pre:
     - docker-compose up -d
   override:
-    - docker-compose run app rake
+    - sleep 180 && docker-compose run app rake

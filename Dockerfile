@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     apt-add-repository ppa:brightbox/ruby-ng && \
     apt-get update && \
-    apt-get install -y ruby2.3 ruby2.3-dev ruby-switch \
+    apt-get install -y ruby2.3 ruby2.3-dev \
       build-essential openssh-server git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

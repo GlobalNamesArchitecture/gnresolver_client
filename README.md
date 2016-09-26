@@ -62,13 +62,13 @@ The gem is available as open source under the terms of the
 
 [gem_badge]: https://badge.fury.io/rb/gnresolver_client.svg
 [gem_link]: http://badge.fury.io/rb/gnresolver_client
-[ci_badge]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnresolver_client.svg
-[ci_link]: http://travis-ci.org/GlobalNamesArchitecture/gnresolver_client
+[ci_badge]: https://circleci.com/gh/GlobalNamesArchitecture/gnresolver_client.svg?style=svg
+[ci_link]: https://circleci.com/gh/GlobalNamesArchitecture/gnresolver_client
 [cov_badge]: https://coveralls.io/repos/GlobalNamesArchitecture/gnresolver_client/badge.svg?branch=master
 [cov_link]: https://coveralls.io/r/GlobalNamesArchitecture/gnresolver_client?branch=master
 [code_badge]: https://codeclimate.com/github/GlobalNamesArchitecture/gnresolver_client/badges/gpa.svg
 [code_link]: https://codeclimate.com/github/GlobalNamesArchitecture/gnresolver_client
-[dep_badge]: https://gemnasium.com/GlobalNamesArchitecture/gnresolver_client.png
+[dep_badge]: https://gemnasium.com/GlobalNamesArchitecture/gnresolver_client.svg
 [dep_link]: https://gemnasium.com/GlobalNamesArchitecture/gnresolver_client
 [github-repo]: https://github.com/GlobalNamesArchitecture/gnresolver_client
 [license]: https://github.com/GlobalNamesArchitecture/gnresolver_client/blob/master/LICENSE
