@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "bundler", "~> 1.12"
   s.add_development_dependency "rake", "~> 10.0"
   s.add_development_dependency "rspec", "~> 3.0"
+  s.add_development_dependency "rspec_junit_formatter", "~> 0.2"
   s.add_development_dependency "rubocop", "~> 0"
   s.add_development_dependency "byebug", "~> 9.0"
   s.add_development_dependency "coveralls", "~> 0.8"
