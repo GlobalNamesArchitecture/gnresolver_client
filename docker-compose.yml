@@ -3,7 +3,8 @@ services:
   app:
     build: .
     environment:
-      GNR_URL: "http://gnresolver:9001/api/"
+      - GNR_URL=http://gnresolver:9001/api/
+      - CODECLIMATE_REPO_TOKEN
     volumes:
       - .:/app
     depends_on:

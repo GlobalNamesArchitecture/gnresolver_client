@@ -8,9 +8,14 @@ machine:
 dependencies:
   pre:
     - sudo pip install docker-compose
-
+notify:
+  webhooks:
+    # gitter hook
+    - url: https://webhooks.gitter.im/e/448e1ef7669c919cdc5f
 test:
   pre:
     - docker-compose up -d
+    - mkdir -p $CIRCLE_TEST_REPORTS/rspec
   override:
-    - sleep 180 && docker-compose run app rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
+    - sleep 180 && docker-compose run app rspec -r rspec_junit_formatter --format RspecJunitFormatter -o ./junit.xml
+    - mv ./junit.xml $CIRCLE_TEST_REPORTS/rspec
