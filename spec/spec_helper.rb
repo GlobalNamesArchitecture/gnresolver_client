@@ -1,6 +1,6 @@
-$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require "coveralls"
-Coveralls.wear!
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 
+require_relative "../lib/gnresolver_client"
 require "support/helpers"
 require "gnresolver_client"

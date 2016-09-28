@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec_junit_formatter", "~> 0.2"
   s.add_development_dependency "rubocop", "~> 0"
   s.add_development_dependency "byebug", "~> 9.0"
-  s.add_development_dependency "coveralls", "~> 0.8"
+  s.add_development_dependency "codeclimate-test-reporter"
 
   s.add_dependency "rest-client", "~> 2.0"
 
