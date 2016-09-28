@@ -13,4 +13,4 @@ test:
   pre:
     - docker-compose up -d
   override:
-    - sleep 180 && docker-compose run app rspec --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
+    - sleep 180 && docker-compose run app rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml

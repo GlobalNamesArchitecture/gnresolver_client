@@ -64,8 +64,8 @@ The gem is available as open source under the terms of the
 [gem_link]: http://badge.fury.io/rb/gnresolver_client
 [ci_badge]: https://circleci.com/gh/GlobalNamesArchitecture/gnresolver_client.svg?style=svg
 [ci_link]: https://circleci.com/gh/GlobalNamesArchitecture/gnresolver_client
-[cov_badge]: https://coveralls.io/github/GlobalNamesArchitecture/gnresolver_client?branch=master
-[cov_link]: https://coveralls.io/repos/github/GlobalNamesArchitecture/gnresolver_client/badge.svg?branch=master
+[cov_badge]: https://coveralls.io/repos/github/GlobalNamesArchitecture/gnresolver_client/badge.svg?branch=master
+[cov_link]: https://coveralls.io/github/GlobalNamesArchitecture/gnresolver_client?branch=master
 [code_badge]: https://codeclimate.com/github/GlobalNamesArchitecture/gnresolver_client/badges/gpa.svg
 [code_link]: https://codeclimate.com/github/GlobalNamesArchitecture/gnresolver_client
 [dep_badge]: https://gemnasium.com/GlobalNamesArchitecture/gnresolver_client.svg
