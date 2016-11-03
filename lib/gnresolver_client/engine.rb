@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 module GnresolverClient
   # Engine-connector to the gnresolver service
   module Engine
-    HEADERS = { content_type: :json, accept: :json }.freeze
+    HEADERS = {}.freeze
 
     class << self
       def connected?
-        query(method: :get, path: "version").nil?
+        !query(method: :get, path: "version").nil?
       end
 
       def query(opts)
@@ -18,12 +20,12 @@ module GnresolverClient
       def url_params(opts)
         opts = { method: "post", path: "" }.merge(opts)
         url = GnresolverClient.conf.url + opts[:path]
-        params = HEADERS.merge(params: opts[:params].to_json)
+        params = HEADERS.merge(params: opts[:params])
         [url, params]
       end
 
       def post?(method)
-        !method.to_s.match(/get/i)
+        method.to_s.match(/post/i)
       end
 
       def post(url, params)
@@ -31,7 +33,6 @@ module GnresolverClient
       end
 
       def get(url, params)
-        params[:query] = params.delete(:params)
         request(:get, url, params)
       end
 

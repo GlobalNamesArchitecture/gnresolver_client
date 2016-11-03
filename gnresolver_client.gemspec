@@ -1,4 +1,6 @@
 # coding: utf-8
+# frozen_string_literal: true
+
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "gnresolver_client/version"
@@ -25,9 +27,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec_junit_formatter", "~> 0.2"
   s.add_development_dependency "rubocop", "~> 0"
   s.add_development_dependency "byebug", "~> 9.0"
+  s.add_development_dependency "guard", "~> 2.4"
+  s.add_development_dependency "guard-rake", "~> 1.0"
   s.add_development_dependency "codeclimate-test-reporter"
 
   s.add_dependency "rest-client", "~> 2.0"
 
-  s.required_ruby_version = ">= 2.0.0"
+  s.required_ruby_version = ">= 2.2.5"
 end

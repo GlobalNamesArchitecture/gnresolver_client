@@ -11,8 +11,6 @@ services:
       - gnresolver
   gnresolver:
     image: gnames/gnresolver-dev
-    ports:
-      - "0.0.0.0:9001:9001"
     environment:
       RACK_ENV: development
       DB_HOST: pg

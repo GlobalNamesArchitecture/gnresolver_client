@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe GnresolverClient::Engine do
   describe "#connected?" do
     it "checks connection to gnresolver" do

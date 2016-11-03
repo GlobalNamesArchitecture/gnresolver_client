@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe GnresolverClient do
   describe ".version" do
     it "has a version number as a constant" do
