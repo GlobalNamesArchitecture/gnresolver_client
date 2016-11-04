@@ -6,7 +6,7 @@ describe GnresolverClient::NameStrings do
 
     it "finds record by name uuid" do
       expect(res.keys.sort).to eq(
-        %i(total matches suppliedNameString localId).sort
+        %i(total matches page perPage suppliedNameString localId).sort
       )
       expect(res[:matches].first.keys.sort).to eq(
         %i(canonicalName canonicalNameUuid classificationPath
@@ -32,13 +32,16 @@ describe GnresolverClient::NameStrings do
       expect(subject.uuid("ha!")[:total]).to be 0
     end
 
-    # Pending...
-
     it "finds all existing matches" do
-      expect(res[:matches].size).to be > 1
-      # TODO: fix a bug #93
-      # expect(res[:total]).to be > 1
+      expect(res[:total]).to be > 1
     end
+
+    it "shows number of matchies in total field" do
+      expect(res[:total]).to be 2
+      expect(res[:total]).to be == res[:matches].size
+    end
+
+    # Pending...
 
     context "vernacular names flag" do
     end
@@ -69,7 +72,7 @@ describe GnresolverClient::NameStrings do
     context "search by canonical form" do
       it "finds strings with authorship" do
         res = subject.search("Metepedanus accentuatus")
-        expect(res[:total]).to be 1
+        expect(res[:total]).to be > 0
         expect(res[:matches].first[:nameString]).
           to eq "Metepedanus accentuatus (Roewer, 1911)"
       end
@@ -144,6 +147,12 @@ describe GnresolverClient::NameStrings do
         it "finds names with known author" do
           res = subject.search("au:Linnaeus")
           expect(res[:total]).to be > 1
+        end
+
+        it "shows number of matches in total" do
+          res = subject.search("au:Linnaeus")
+          expect(res[:total]).to be 91
+          expect(res[:total]).to be == res[:matches].size
         end
 
         it "does not find names with unknown author" do
@@ -255,7 +264,7 @@ describe GnresolverClient::NameStrings do
 
         it "does not find genus in lowcase" do
           res = subject.search("gen:acacia")
-          expect(res[:matches].size).to be 0
+          expect(res[:total]).to be 0
         end
 
         it "finds by genus with wildcard" do
@@ -293,14 +302,21 @@ describe GnresolverClient::NameStrings do
         it "finds by subspecies" do
           res = subject.search("ssp:albiflorum")
           ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          expect(res[:matches].size).to be > 1
+          expect(res[:total]).to be > 1
           expect(ns).to include "Cirsium arvense albiflorum"
         end
 
         it "does not find subspecies in uppercase" do
           res = subject.search("ssp:Albiflorum")
-          expect(res[:matches].size).to be 0
+          expect(res[:total]).to be 0
         end
+      end
+    end
+
+    context "pagination" do
+      it "paginates search results" do
+        # res = subject.search("au:Linnaeus", page_num: 1, per_page: 10)
+        # expect(res[:total]).to be 10
       end
     end
   end

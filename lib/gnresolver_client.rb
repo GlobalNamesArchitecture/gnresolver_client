@@ -5,7 +5,7 @@ require "rest_client"
 require "gnresolver_client/version"
 require "gnresolver_client/engine"
 require "gnresolver_client/name_strings"
-require "gnresolver_client/searcher"
+require "gnresolver_client/name_resolvers"
 
 # Namespace module for the gem
 module GnresolverClient
