@@ -6,13 +6,13 @@ describe GnresolverClient::NameStrings do
 
     it "finds record by name uuid" do
       expect(res.keys.sort).to eq(
-        %i(total matches page perPage suppliedNameString localId).sort
+        %i(total page perPage matches).sort
       )
       expect(res[:matches].first.keys.sort).to eq(
         %i(canonicalName canonicalNameUuid classificationPath
            classificationPathIds classificationPathRanks dataSourceId
-           dataSourceTitle globalId kind nameString nameStringUuid
-           surrogate taxonId vernacular)
+           dataSourceTitle matchType nameString nameStringUuid
+           surrogate taxonId vernaculars)
       )
       expect(res[:matches].first[:canonicalNameUuid]).
         to eq("7ce58a7d-d3dd-5108-b490-d42c9915f45f")
