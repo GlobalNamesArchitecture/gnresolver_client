@@ -6,8 +6,10 @@ module GnresolverClient
     PATH = "name_resolvers"
 
     class << self
-      def resolve(names, opts = {})
-        [names, opts]
+      def search(method, term, opts = {})
+        params = { path: PATH, method: method,
+                   params: { names: term }.merge(opts) }
+        GnresolverClient::Engine.query(params)
       end
     end
   end

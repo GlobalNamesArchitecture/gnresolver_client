@@ -8,3 +8,4 @@
 /spec/reports/
 /tmp/
 .vim.custom
+.byebug_history
