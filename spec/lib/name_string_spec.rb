@@ -105,13 +105,12 @@ describe GnresolverClient::NameStrings do
     context "'faceted' search" do
       context "search by exact match" do
         it "finds names by exact matching" do
-          # TODO: fix #99
-          # res1 = subject.search("Hyphessobrycon panamensis daguae")
-          # res2 = subject.search("exact:Hyphessobrycon panamensis daguae")
-          # ns1 = res1[:matches].map { |m| m[:nameString] }.uniq
-          # ns2 = res2[:matches].map { |m| m[:nameString] }.uniq
-          # expect(ns1.size).to be 2
-          # expect(ns2.size).to be 1
+          res1 = subject.search("Hyphessobrycon panamensis daguae")
+          res2 = subject.search("exact:Hyphessobrycon panamensis daguae")
+          ns1 = res1[:matches].map { |m| m[:nameString] }.uniq
+          ns2 = res2[:matches].map { |m| m[:nameString] }.uniq
+          expect(ns1.size).to be 2
+          expect(ns2.size).to be 1
         end
       end
 
@@ -131,11 +130,10 @@ describe GnresolverClient::NameStrings do
 
       context "canonical search" do
         it "finds names only using canonical" do
-          # TODO: fix #99
-          # res1 = subject.search("ns:Alph*")
-          # ns1 = res1[:matches].map { |m| m[:nameString] }.uniq
-          # expect(ns1.size).to be > 0
-          # expect(ns1).to include("Alphavirus: rio negro virus Ictv")
+          res1 = subject.search("ns:Alph*")
+          ns1 = res1[:matches].map { |m| m[:nameString] }.uniq
+          expect(ns1.size).to be > 0
+          expect(ns1).to include("Alphavirus: rio negro virus Ictv")
           res2 = subject.search("can:Alph*")
           ns2 = res2[:matches].map { |m| m[:nameString] }.uniq
           expect(ns2.size).to be > 0
