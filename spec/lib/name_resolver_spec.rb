@@ -54,7 +54,6 @@ describe GnresolverClient::NameResolvers do
                  surrogate taxonId vernacular)
     end
 
->>>>>>> 4d6f3dc... wip
     it "finds results for several names" do
       res = subject.search(
         :get, '[{"value":"Hyphessobrycon panamensis daguae", "localId": 1},
@@ -66,8 +65,6 @@ describe GnresolverClient::NameResolvers do
       expect(res.last.keys.sort).
         to eq %i(localId matches page perPage suppliedNameString total)
     end
-<<<<<<< HEAD
-=======
 
     it "finds results for several names using post"
   end
