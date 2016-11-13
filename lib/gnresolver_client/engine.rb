@@ -3,7 +3,7 @@
 module GnresolverClient
   # Engine-connector to the gnresolver service
   module Engine
-    HEADERS = {}.freeze
+    HEADERS = { content_type: :json, accept: :json }.freeze
 
     class << self
       def connected?
