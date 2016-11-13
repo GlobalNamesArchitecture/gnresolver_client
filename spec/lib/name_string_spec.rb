@@ -63,9 +63,8 @@ describe GnresolverClient::NameStrings do
       end
 
       it "finds results using wildcard" do
-        # TODO: fix #94
-        # res = subject.search("Ilyrgis oliv*")
-        # expect(res[:total]).to be > 0
+        res = subject.search("Ilyrgis oliv*")
+        expect(res[:total]).to be > 0
       end
     end
 
@@ -80,25 +79,22 @@ describe GnresolverClient::NameStrings do
 
     context "wild card search" do
       it "finds binomial results" do
-        # TODO: fix a bug #94
-        # res = subject.search("Ilyr*")
-        # expect(res[:total]).to be > 0
+        res = subject.search("Ilyr*")
+        expect(res[:total]).to be > 0
       end
 
       it "finds uninomial with authorship" do
-        # res = subject.search("Itarch*")
-        # ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-        # TODO: fix a bug #97
-        # expect(ns).to eq ["Itarchytas Blanchard 1940"]
-        # expect(res[:total]).to be > 0
+        res = subject.search("Itarch*")
+        ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
+        expect(ns).to eq ["Itarchytas Blanchard 1940"]
+        expect(res[:total]).to be > 0
       end
 
       it "finds uninomial without authorship" do
-        # TODO: fix a bug #94
-        # res = subject.search("Jura*")
-        # ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-        # expect(ns).to eq ["Jurapteryx"]
-        # expect(res[:total]).to be > 0
+        res = subject.search("Jura*")
+        ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
+        expect(ns).to eq ["Jurapteryx"]
+        expect(res[:total]).to be > 0
       end
     end
 
