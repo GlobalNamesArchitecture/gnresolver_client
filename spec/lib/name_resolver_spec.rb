@@ -3,32 +3,30 @@
 describe GnresolverClient::NameResolvers do
   context "simple search" do
     it "finds results for a name" do
-      pending("due API changes")
       res = subject.search(
-        :get, '{"value":"Hyphessobrycon panamensis daguae", "localId": 1}'
+        :get, '{"value":"Hyphessobrycon panamensis daguae", "suppliedId": 1}'
       )
       expect(res).to be_kind_of Array
       expect(res.first.keys.sort).
-        to eq %i(localId matches page perPage suppliedNameString total)
+        to eq %i(matches page perPage suppliedId suppliedNameString total)
       expect(res.first[:matches].size).to be > 1
       expect(res.first[:matches].first.keys.sort).
         to eq %i(canonicalName canonicalNameUuid classificationPath
                  classificationPathIds classificationPathRanks dataSourceId
-                 dataSourceTitle globalId kind nameString nameStringUuid
-                 surrogate taxonId vernacular)
+                 dataSourceTitle matchType nameString nameStringUuid
+                 surrogate taxonId vernaculars)
     end
 
     it "finds results for several names" do
-      pending("due API changes")
       res = subject.search(
-        :get, '[{"value":"Hyphessobrycon panamensis daguae", "localId": 1},
-                {"value": "Aegilops", "localId": 2}]'
+        :get, '[{"value":"Hyphessobrycon panamensis daguae", "suppliedId": 1},
+                {"value": "Aegilops", "suppliedId": 2}]'
       )
       expect(res.size).to be 2
       expect(res.last[:total]).to be 3
       expect(res.last[:matches].size).to be 3
       expect(res.last.keys.sort).
-        to eq %i(localId matches page perPage suppliedNameString total)
+        to eq %i(matches page perPage suppliedId suppliedNameString total)
     end
   end
 
