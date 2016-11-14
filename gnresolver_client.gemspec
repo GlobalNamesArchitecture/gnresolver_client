@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "byebug", "~> 9.0"
   s.add_development_dependency "guard", "~> 2.4"
   s.add_development_dependency "guard-rake", "~> 1.0"
-  s.add_development_dependency "codeclimate-test-reporter", "~> 0.6"
+  s.add_development_dependency "codeclimate-test-reporter", "~> 1.0"
 
   s.add_dependency "rest-client", "~> 2.0"
 

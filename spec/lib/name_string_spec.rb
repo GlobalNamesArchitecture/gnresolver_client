@@ -309,8 +309,45 @@ describe GnresolverClient::NameStrings do
 
     context "pagination" do
       it "paginates search results" do
-        # res = subject.search("au:Linnaeus", page_num: 1, per_page: 10)
-        # expect(res[:total]).to be 10
+        res = subject.search("au:Linnaeus", page: 1, per_page: 10)
+        expect(res[:matches].size).to be 10
+        expect(res[:total]).to be 91
+      end
+
+      it "keeps list consistent page by page" do
+        res1 = subject.search("au:Linnaeus", page: 0, per_page: 10)
+        res2 = subject.search("au:Linnaeus", page: 1, per_page: 10)
+        res3 = subject.search("au:Linnaeus", page: 9, per_page: 10)
+        res4 = subject.search("au:Linnaeus")
+        expect(res1[:matches].size).to be 10
+        expect(res2[:matches].size).to be 10
+        expect(res3[:matches].size).to be 1
+        expect(res1[:matches]).to eq res4[:matches][0..9]
+        expect(res2[:matches]).to eq res4[:matches][10..19]
+        expect(res3[:matches]).to eq [res4[:matches][-1]]
+      end
+
+      it "keeps list consistent independently of page size" do
+        res1 = subject.search("au:Linnaeus", page: 7, per_page: 3)
+        res2 = subject.search("au:Linnaeus", page: 1, per_page: 21)
+        expect(res1[:matches]).to eq(res2[:matches][0..2])
+      end
+
+      it "returns empty resuslt or negative pages" do
+        # TODO: Make a ticket -- does not make sense to me
+        res1 = subject.search("au:Linnaeus", page: -1, per_page: 3)
+        res2 = subject.search("au:Linnaeus", page: 0, per_page: 3)
+        expect(res1[:matches]).to eq res2[:matches]
+      end
+
+      it "returns empty result on negative per_page" do
+        res = subject.search("au:Linnaeus", page: 0, per_page: -3)
+        expect(res[:matches].size).to be 0
+      end
+
+      it "returns empty result if page is out of boundaries" do
+        res = subject.search("au:Linnaeus", page: 70, per_page: 3)
+        expect(res[:matches]).to eq []
       end
     end
   end
