@@ -257,11 +257,10 @@ describe GnresolverClient::NameStrings do
         end
 
         it "finds by genus with wildcard" do
-          # TODO: fix #94
-          # res = subject.search("gen:Acac*")
-          # ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          # expect(res[:matches].size).to be > 1
-          # expect(ns).to include "Acacia fruticosa Voigt"
+          res = subject.search("gen:Acac*")
+          ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
+          expect(res[:matches].size).to be > 1
+          expect(ns).to include "Acacia fruticosa Voigt"
         end
       end
 
