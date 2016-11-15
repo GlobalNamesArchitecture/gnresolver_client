@@ -278,11 +278,10 @@ describe GnresolverClient::NameStrings do
         end
 
         it "finds by species with wildcard" do
-          # TODO: fix #94
-          # res = subject.search("sp:lin*")
-          # ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          # expect(res[:matches].size).to be > 1
-          # expect(ns).to include "Malachius Linearis Morawitz, 1861"
+          res = subject.search("sp:line*")
+          ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
+          expect(res[:matches].size).to be > 1
+          expect(ns).to include "Malachius linearis Morawitz, 1861"
         end
       end
 
