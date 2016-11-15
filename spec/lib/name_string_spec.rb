@@ -172,12 +172,10 @@ describe GnresolverClient::NameStrings do
 
         it "does find authors with non-ASCII chars" do
           res = subject.search("au:Aspöck")
-          # ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          # TODO: bug #96
-          # expect(ns).to eq []
-          expect(res[:matches].size).to be > 0 # should be 1
-          # TODO: bug  #93
-          # expect(res[:total]).to be > 1
+          ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
+          expect(ns).to eq ["Agulla kaszabi Aspock & Aspock 1967"]
+          expect(res[:matches].size).to be > 0
+          expect(res[:total]).to be > 0
         end
 
         it "finds authors with non-ASCII chars with ASCII substitution" do
