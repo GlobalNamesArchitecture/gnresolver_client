@@ -187,9 +187,8 @@ describe GnresolverClient::NameStrings do
         end
 
         it "works with wildcard" do
-          # TODO: bug #94
-          # res = subject.search("au:Ding*")
-          # expect(res[:matches].size).to be > 1
+          res = subject.search("au:Ding*")
+          expect(res[:matches].size).to be 1
         end
       end
 
@@ -206,6 +205,13 @@ describe GnresolverClient::NameStrings do
           ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
           expect(res[:matches].size).to be > 1
           expect(ns).to eq ["Neodryocoetes hymenaeae Eggers, 1933b"]
+        end
+
+        it "finds nothing with year less than 1758" do
+          (1500..1750).step(15) do |yr|
+            res = subject.search("yr:%d" % yr)
+            expect(res[:matches].size).to be 0
+          end
         end
 
         it "finds year with a wildcard" do
