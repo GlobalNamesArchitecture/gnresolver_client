@@ -180,13 +180,12 @@ describe GnresolverClient::NameStrings do
           # expect(res[:total]).to be > 1
         end
 
-        it "does find authors with non-ASCII chars with ASCII substitution" do
-          # res = subject.search("au:Aspock")
-          # ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          # expect(ns).to eq []
-          # expect(res[:matches].size).to be > 1
-          # TODO: bug  #93
-          # expect(res[:total]).to be > 1
+        it "finds authors with non-ASCII chars with ASCII substitution" do
+          res = subject.search("au:Aspock")
+          ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
+          expect(ns).to eq ["Agulla kaszabi Aspock & Aspock 1967"]
+          expect(res[:matches].size).to be > 1
+          expect(res[:total]).to be > 1
         end
 
         it "works with wildcard" do
