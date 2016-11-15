@@ -215,11 +215,10 @@ describe GnresolverClient::NameStrings do
         end
 
         it "finds year with a wildcard" do
-          # TODO: fix #94
-          # res = subject.search("yr:1933*")
-          # ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          # expect(res[:matches].size).to be > 1
-          # expect(ns).to include "Neodryocoetes hymenaeae Eggers, 1933b"
+          res = subject.search("yr:193*")
+          ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
+          expect(res[:matches].size).to be > 1
+          expect(ns).to include "Neodryocoetes hymenaeae Eggers, 1933b"
         end
       end
 
