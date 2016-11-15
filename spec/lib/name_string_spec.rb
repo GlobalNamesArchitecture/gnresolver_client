@@ -233,10 +233,9 @@ describe GnresolverClient::NameStrings do
           expect(ns).to include "Algae C. Linnaeus, 1753"
         end
 
-        it "does not find by lowcase uninomial" do
-          # TODO: fix bug #98
-          # res = subject.search("uni:algae")
-          # expect(res[:matches].size).to be 0
+        it "finds by lowcase uninomial" do
+          res = subject.search("uni:algae")
+          expect(res[:matches].size).to be 1
         end
 
         it "finds by uninomial with wildcard" do
@@ -256,9 +255,9 @@ describe GnresolverClient::NameStrings do
           expect(ns).to include "Acacia fruticosa Voigt"
         end
 
-        it "does not find genus in lowcase" do
+        it "finds genus in lowcase" do
           res = subject.search("gen:acacia")
-          expect(res[:total]).to be 0
+          expect(res[:total]).to be 53
         end
 
         it "finds by genus with wildcard" do
@@ -278,9 +277,9 @@ describe GnresolverClient::NameStrings do
           expect(ns).to include "Malachius linearis Morawitz, 1861"
         end
 
-        it "does not find species in uppercase" do
+        it "finds species in uppercase" do
           res = subject.search("sp:Linearis")
-          expect(res[:matches].size).to be 0
+          expect(res[:matches].size).to be 12
         end
 
         it "finds by species with wildcard" do
@@ -300,9 +299,9 @@ describe GnresolverClient::NameStrings do
           expect(ns).to include "Cirsium arvense albiflorum"
         end
 
-        it "does not find subspecies in uppercase" do
+        it "find subspecies in uppercase" do
           res = subject.search("ssp:Albiflorum")
-          expect(res[:total]).to be 0
+          expect(res[:total]).to be 2
         end
       end
     end
