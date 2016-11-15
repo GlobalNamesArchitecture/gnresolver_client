@@ -238,11 +238,10 @@ describe GnresolverClient::NameStrings do
         end
 
         it "finds by uninomial with wildcard" do
-          # TODO: fix #94
-          # res = subject.search("uni:Alg*")
-          # ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          # expect(res[:matches].size).to be > 1
-          # expect(ns).to include "Algae C. Linnaeus, 1753"
+          res = subject.search("uni:Alga*")
+          ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
+          expect(res[:matches].size).to be 1
+          expect(ns).to include "Algae C. Linnaeus, 1753"
         end
       end
 
