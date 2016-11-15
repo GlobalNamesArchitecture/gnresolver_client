@@ -293,6 +293,13 @@ describe GnresolverClient::NameStrings do
           expect(ns).to include "Cirsium arvense albiflorum"
         end
 
+        it "finds by subspecies with wildcard" do
+          res = subject.search("ssp:albi*")
+          ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
+          expect(res[:total]).to be > 1
+          expect(ns).to include "Cirsium arvense albiflorum"
+        end
+
         it "find subspecies in uppercase" do
           res = subject.search("ssp:Albiflorum")
           expect(res[:total]).to be 2
