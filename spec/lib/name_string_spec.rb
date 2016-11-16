@@ -11,7 +11,7 @@ describe GnresolverClient::NameStrings do
       expect(res[:matches].first.keys.sort).to eq(
         %i(canonicalName canonicalNameUuid classificationPath
            classificationPathIds classificationPathRanks dataSourceId
-           dataSourceTitle matchType nameString nameStringUuid
+           dataSourceTitle localId matchType nameString nameStringUuid
            surrogate taxonId vernaculars)
       )
       expect(res[:matches].first[:canonicalNameUuid]).
@@ -80,7 +80,9 @@ describe GnresolverClient::NameStrings do
     context "wild card search" do
       it "finds binomial results" do
         res = subject.search("Ilyr*")
+        ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
         expect(res[:total]).to be > 0
+        expect(ns).to include "Ilyrgis olivacea"
       end
 
       it "finds uninomial with authorship" do
@@ -154,9 +156,9 @@ describe GnresolverClient::NameStrings do
           expect(res[:total]).to be 0
         end
 
-        it "does not find names with known author in lowcase" do
+        it "does find names with known author in lowcase" do
           res = subject.search("au:linnaeus")
-          expect(res[:total]).to be 0
+          expect(res[:total]).to be > 0
         end
 
         it "does find all 'filius' authors" do
@@ -179,16 +181,16 @@ describe GnresolverClient::NameStrings do
         end
 
         it "finds authors with non-ASCII chars with ASCII substitution" do
-          res = subject.search("au:Aspock")
+          res = subject.search("au:Frol.")
           ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          expect(ns).to eq ["Agulla kaszabi Aspock & Aspock 1967"]
+          expect(ns).to include "Anomotaenia stentorea Fröl."
           expect(res[:matches].size).to be > 1
           expect(res[:total]).to be > 1
         end
 
         it "works with wildcard" do
-          res = subject.search("au:Ding*")
-          expect(res[:matches].size).to be 1
+          res = subject.search("au:Linn*")
+          expect(res[:matches].size).to be > 10
         end
       end
 
