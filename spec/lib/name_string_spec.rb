@@ -44,6 +44,13 @@ describe GnresolverClient::NameStrings do
     # Pending...
 
     context "vernacular names flag" do
+      let(:res) do
+        subject.uuid("0005498d-8f5f-5952-8bd6-46468008859d",
+                     vernaculars: true)
+      end
+
+      it "returns vernacular names" do
+      end
     end
 
     context "surrogate names flag" do
