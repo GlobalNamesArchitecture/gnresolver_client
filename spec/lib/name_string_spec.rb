@@ -5,13 +5,14 @@ describe GnresolverClient::NameStrings do
     let(:res) { subject.uuid("00000983-28b3-54c3-a858-e03121fa535d") }
 
     it "finds record by name uuid" do
+      pending "needs API fix: missing localId"
       expect(res.keys.sort).to eq(
         %i(total page perPage matches).sort
       )
       expect(res[:matches].first.keys.sort).to eq(
         %i(canonicalName canonicalNameUuid classificationPath
            classificationPathIds classificationPathRanks dataSourceId
-           dataSourceTitle matchType nameString nameStringUuid
+           dataSourceTitle localId matchType nameString nameStringUuid
            surrogate taxonId vernaculars)
       )
       expect(res[:matches].first[:canonicalNameUuid]).
@@ -80,7 +81,9 @@ describe GnresolverClient::NameStrings do
     context "wild card search" do
       it "finds binomial results" do
         res = subject.search("Ilyr*")
+        ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
         expect(res[:total]).to be > 0
+        expect(ns).to include "Ilyrgis olivacea"
       end
 
       it "finds uninomial with authorship" do
@@ -154,9 +157,9 @@ describe GnresolverClient::NameStrings do
           expect(res[:total]).to be 0
         end
 
-        it "does not find names with known author in lowcase" do
+        it "finds names with known author in lowcase" do
           res = subject.search("au:linnaeus")
-          expect(res[:total]).to be 0
+          expect(res[:total]).to be > 0
         end
 
         it "does find all 'filius' authors" do
@@ -170,25 +173,37 @@ describe GnresolverClient::NameStrings do
           expect(res[:total]).to be > 1
         end
 
-        it "does find authors with non-ASCII chars" do
+        it "finds authors with non-ASCII chars" do
           res = subject.search("au:Aspöck")
           ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          expect(ns).to eq ["Agulla kaszabi Aspock & Aspock 1967"]
+          expect(ns).to contain_exactly("Agulla kaszabi Aspock & Aspock 1967",
+                                        "Austroberothella Aspöck & Aspöck 1985")
           expect(res[:matches].size).to be > 0
           expect(res[:total]).to be > 0
         end
 
         it "finds authors with non-ASCII chars with ASCII substitution" do
-          res = subject.search("au:Aspock")
+          pending "empty due to missing name_string_index"
+=begin
+SELECT "name_uuid"
+FROM "name_strings__author_words"
+WHERE "author_word" = unaccent('FROL.')
+
+000fb7f3-ad82-5cc0-9373-c18ce308558d
+
+but there is no such name_string_index at
+https://media.githubusercontent.com/media/GlobalNamesArchitecture/gnresolver/d8e1f1c328850d2c5fbc4ee491a9a215670f00e4/db-migration/db/seed/development/name_string_indices.csv
+=end
+          res = subject.search("au:Frol.")
           ns = res[:matches].map { |m| m[:nameString] }.uniq.sort
-          expect(ns).to eq ["Agulla kaszabi Aspock & Aspock 1967"]
+          expect(ns).to include "Anomotaenia stentorea Fröl."
           expect(res[:matches].size).to be > 1
           expect(res[:total]).to be > 1
         end
 
         it "works with wildcard" do
-          res = subject.search("au:Ding*")
-          expect(res[:matches].size).to be 1
+          res = subject.search("au:Linn*")
+          expect(res[:matches].size).to be > 10
         end
       end
 
