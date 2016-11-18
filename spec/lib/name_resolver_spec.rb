@@ -6,11 +6,12 @@ describe GnresolverClient::NameResolvers do
       res = subject.search(
         :get, '{"value":"Hyphessobrycon panamensis daguae", "suppliedId": 1}'
       )
-      expect(res).to be_kind_of Array
-      expect(res.first.keys.sort).
-        to eq %i(matches page perPage suppliedId suppliedNameString total)
-      expect(res.first[:matches].size).to be > 1
-      expect(res.first[:matches].first.keys.sort).
+      expect(res).to be_kind_of Hash
+      expect(res.keys.sort).to eq %i(data page perPage)
+      expect(res[:data]).to be_kind_of Array
+      expect(res[:data].first.keys.sort).to eq %i(results suppliedId suppliedNameString total)
+      expect(res[:data].first[:results].size).to be > 1
+      expect(res[:data].first[:results].first.keys.sort).
         to eq %i(canonicalName canonicalNameUuid classificationPath
                  classificationPathIds classificationPathRanks dataSourceId
                  dataSourceTitle matchType nameString nameStringUuid
@@ -22,11 +23,11 @@ describe GnresolverClient::NameResolvers do
         :get, '[{"value":"Hyphessobrycon panamensis daguae", "suppliedId": 1},
                 {"value": "Aegilops", "suppliedId": 2}]'
       )
-      expect(res.size).to be 2
-      expect(res.last[:total]).to be 3
-      expect(res.last[:matches].size).to be 3
-      expect(res.last.keys.sort).
-        to eq %i(matches page perPage suppliedId suppliedNameString total)
+      expect(res[:data].size).to be 2
+      expect(res[:data].last[:total]).to be 3
+      expect(res[:data].last[:results].size).to be 3
+      expect(res.keys.sort).to eq %i(data page perPage)
+      expect(res[:data].last.keys.sort).to eq %i(results suppliedId suppliedNameString total)
     end
   end
 
