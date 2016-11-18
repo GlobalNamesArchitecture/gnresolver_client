@@ -2,6 +2,7 @@
 
 require "ostruct"
 require "rest_client"
+require "json"
 require "gnresolver_client/version"
 require "gnresolver_client/engine"
 require "gnresolver_client/name_strings"
