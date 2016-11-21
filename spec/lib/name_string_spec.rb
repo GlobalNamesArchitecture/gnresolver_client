@@ -11,8 +11,8 @@ describe GnresolverClient::NameStrings do
       expect(res[:data].first[:results].first.keys.sort).to eq(
         %i(canonicalName canonicalNameUuid classificationPath
            classificationPathIds classificationPathRanks dataSourceId
-           dataSourceTitle globalId localId matchType nameString nameStringUuid
-           surrogate taxonId vernaculars)
+           dataSourceTitle globalId localId matchType nameString
+           nameStringUuid prescore surrogate taxonId vernaculars)
       )
       expect(res[:data].first[:results].first[:canonicalNameUuid]).
         to eq("7ce58a7d-d3dd-5108-b490-d42c9915f45f")

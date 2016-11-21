@@ -14,8 +14,8 @@ describe GnresolverClient::NameResolvers do
       expect(res[:data].first[:results].first.keys.sort).
         to eq %i(canonicalName canonicalNameUuid classificationPath
                  classificationPathIds classificationPathRanks dataSourceId
-                 dataSourceTitle globalId localId matchType nameString nameStringUuid
-                 surrogate taxonId vernaculars)
+                 dataSourceTitle globalId localId matchType nameString
+                 nameStringUuid prescore surrogate taxonId vernaculars)
     end
 
     it "finds results for several names" do
