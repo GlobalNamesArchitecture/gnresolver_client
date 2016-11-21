@@ -9,7 +9,7 @@ describe GnresolverClient::NameResolvers do
       expect(res).to be_kind_of Hash
       expect(res.keys.sort).to eq %i(data page perPage)
       expect(res[:data]).to be_kind_of Array
-      expect(res[:data].first.keys.sort).to eq %i(results suppliedId suppliedNameString total)
+      expect(res[:data].first.keys.sort).to eq %i(results suppliedId suppliedInput total)
       expect(res[:data].first[:results].size).to be > 1
       expect(res[:data].first[:results].first.keys.sort).
         to eq %i(canonicalName canonicalNameUuid classificationPath
@@ -27,7 +27,7 @@ describe GnresolverClient::NameResolvers do
       expect(res[:data].last[:total]).to be 3
       expect(res[:data].last[:results].size).to be 3
       expect(res.keys.sort).to eq %i(data page perPage)
-      expect(res[:data].last.keys.sort).to eq %i(results suppliedId suppliedNameString total)
+      expect(res[:data].last.keys.sort).to eq %i(results suppliedId suppliedInput total)
     end
   end
 
