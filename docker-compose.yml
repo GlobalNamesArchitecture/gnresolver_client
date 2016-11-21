@@ -10,7 +10,7 @@ services:
     depends_on:
       - gnresolver
   gnresolver:
-    image: gnames/gnresolver-dev:5a5f1e
+    image: gnames/gnresolver-dev:535bb2
     environment:
       RACK_ENV: development
       DB_HOST: pg

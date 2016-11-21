@@ -5,17 +5,16 @@ describe GnresolverClient::NameStrings do
     let(:res) { subject.uuid("00000983-28b3-54c3-a858-e03121fa535d") }
 
     it "finds record by name uuid" do
-      pending "needs API fix: missing localId"
-      expect(res[:items].keys.sort).to eq(
-        %i(total page perPage matches).sort
+      expect(res.keys.sort).to eq(
+        %i(data page perPage).sort
       )
-      expect(res[:items].first[:results].first.keys.sort).to eq(
+      expect(res[:data].first[:results].first.keys.sort).to eq(
         %i(canonicalName canonicalNameUuid classificationPath
            classificationPathIds classificationPathRanks dataSourceId
-           dataSourceTitle localId matchType nameString nameStringUuid
+           dataSourceTitle globalId localId matchType nameString nameStringUuid
            surrogate taxonId vernaculars)
       )
-      expect(res[:items].first[:results].first[:canonicalNameUuid]).
+      expect(res[:data].first[:results].first[:canonicalNameUuid]).
         to eq("7ce58a7d-d3dd-5108-b490-d42c9915f45f")
     end
 
